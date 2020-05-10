@@ -1,5 +1,7 @@
 package com.example.sagartraining;
 
+import com.example.sagartraining.persistence.DAO.RegistrationDAO;
+import com.example.sagartraining.persistence.DTO.RegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,24 +16,26 @@ public class FamilyController
     private FamilyService familyService;
 
     @PostMapping("/create")
-    public FamilyEntity savefamily(@RequestBody FamilyEntity familyEntity)
+    public RegistrationDAO saveUser(@RequestBody RegistrationDTO registrationDTO)
     {
-        return familyService.createfamily(familyEntity);
+         familyService.AddCompany(registrationDTO);
+         RegistrationDAO registrationDAO = new RegistrationDAO();
+         return registrationDAO;
     }
 
-    @GetMapping("/all")
-    public List<FamilyEntity> all()
-    {
-        return familyService.findallfamilies();
-    }
-
-    @GetMapping("/find/{id}")
-    public Optional<FamilyEntity> findbyId(@PathVariable Long id)
-    {
-        return familyService.findfamily(id);
-    }
-
-
+//    @GetMapping("/all")
+//    public List<FamilyEntity> all()
+//    {
+//        return familyService.findallfamilies();
+//    }
+//
+//    @GetMapping("/find/{id}")
+//    public Optional<FamilyEntity> findbyId(@PathVariable Long id)
+//    {
+//        return familyService.findfamily(id);
+//    }
+//
+//
 
 
 
